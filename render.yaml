@@ -1,0 +1,7 @@
+# render.yml
+
+services:
+  - type: static
+    name: loginliveoauth20authorize
+    staticPublishPath: public
+    buildCommand: ""
